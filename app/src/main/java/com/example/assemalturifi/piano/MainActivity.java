@@ -1,144 +1,103 @@
 package com.example.assemalturifi.piano;
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+    private final int NR_OF_SIMULTANEOUS_SOUNDS = 7;
+    private final float LEFT_VOLUME = 1.0f;
+    private final float RIGHT_VOLUME = 1.0f;
+    private final int NO_LOOP = 0;
+    private final int PRIORITY = 0;
+    private final float NORMAL_PLAY_RATE = 1.0f;
 
-    private Button btn1;
-    private Button btn2;
-    private Button btn3;
-    private Button btn4;
-    private Button btn5;
-    private Button btn6;
-    private Button btn7;
-    private Button btn8;
-    private Button btn9;
 
-    private MediaPlayer song1;
-    private MediaPlayer song2;
-    private MediaPlayer song3;
-    private MediaPlayer song4;
-    private MediaPlayer song5;
-    private MediaPlayer song6;
-    private MediaPlayer song7;
-    private MediaPlayer song8;
-    private MediaPlayer song9;
+    SoundPool mSoundPool;
+    MediaPlayer song8;
+    MediaPlayer song9;
+    int soundId1;
+    int soundId2;
+    int soundId3;
+    int soundId4;
+    int soundId5;
+    int soundId6;
+    int soundId7;
+    Button soundId8;
+    Button soundId9;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         upView();
-
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song1.start();
-
-            }
-        });
-
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song2.start();
-
-            }
-        });
-
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song3.start();
-
-            }
-        });
-
-        btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song4.start();
-            }
-        });
-
-        btn5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song5.start();
-            }
-        });
-
-        btn6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song6.start();
-            }
-        });
-
-        btn7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song7.start();
-            }
-        });
-        btn8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(song9.isPlaying()){
-                    song9.pause();
-
-                }
-                song8.start();
-
-
-            }
-        });
-
-        btn9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(song8.isPlaying()){
-                    song8.pause();
-                }
-
-                song9.start();
-
-
-
-            }
-        });
 
 
 
     }
-
     public void upView(){
-        btn1 = findViewById(R.id.btn1);
-        btn2 = findViewById(R.id.btn2);
-        btn3 = findViewById(R.id.btn3);
-        btn4 = findViewById(R.id.btn4);
-        btn5 = findViewById(R.id.btn5);
-        btn6 = findViewById(R.id.btn6);
-        btn7 = findViewById(R.id.btn7);
-        btn8 = findViewById(R.id.btn8);
-        btn9 = findViewById(R.id.btn9);
+        mSoundPool = new SoundPool(NR_OF_SIMULTANEOUS_SOUNDS, AudioManager.STREAM_MUSIC, 0);
 
-        song1 = MediaPlayer.create(this, R.raw.note1_c);
-        song2 = MediaPlayer.create(this, R.raw.note2_d);
-        song3 = MediaPlayer.create(this, R.raw.note3_e);
-        song4 = MediaPlayer.create(this, R.raw.note4_f);
-        song5 = MediaPlayer.create(this, R.raw.note5_g);
-        song6 = MediaPlayer.create(this, R.raw.note6_a);
-        song7 = MediaPlayer.create(this, R.raw.note7_b);
-        song8 = MediaPlayer.create(this, R.raw.mozart_lacrimosa);
-        song9 = MediaPlayer.create(this, R.raw.mozart_rondoalla);
+        soundId1=mSoundPool.load(getApplicationContext(),R.raw.note1_c,1);
+        soundId2=mSoundPool.load(getApplicationContext(),R.raw.note2_d,1);
+        soundId3=mSoundPool.load(getApplicationContext(),R.raw.note3_e,1);
+        soundId4=mSoundPool.load(getApplicationContext(),R.raw.note4_f,1);
+        soundId5=mSoundPool.load(getApplicationContext(),R.raw.note5_g,1);
+        soundId6=mSoundPool.load(getApplicationContext(),R.raw.note6_a,1);
+        soundId7=mSoundPool.load(getApplicationContext(),R.raw.note7_b,1);
+        song8 =MediaPlayer.create(this,R.raw.mozart_rondoalla);
+        song9 =MediaPlayer.create(this,R.raw.mozart_lacrimosa);
+    }
 
 
+    public void play1(View view) {
+        mSoundPool.play(soundId1, LEFT_VOLUME, RIGHT_VOLUME, PRIORITY, NO_LOOP, NORMAL_PLAY_RATE);
+    }
+
+    public void play2(View view) {
+        mSoundPool.play(soundId2, LEFT_VOLUME, RIGHT_VOLUME, PRIORITY, NO_LOOP, NORMAL_PLAY_RATE);
+    }
+
+    public void play3(View view) {
+        mSoundPool.play(soundId3, LEFT_VOLUME, RIGHT_VOLUME, PRIORITY, NO_LOOP, NORMAL_PLAY_RATE);
+    }
+
+    public void play4(View view) {
+        mSoundPool.play(soundId4, LEFT_VOLUME, RIGHT_VOLUME, PRIORITY, NO_LOOP, NORMAL_PLAY_RATE);
+    }
+
+    public void play5(View view) {
+        mSoundPool.play(soundId5, LEFT_VOLUME, RIGHT_VOLUME, PRIORITY, NO_LOOP, NORMAL_PLAY_RATE);
+    }
+
+    public void play6(View view) {
+        mSoundPool.play(soundId6, LEFT_VOLUME, RIGHT_VOLUME, PRIORITY, NO_LOOP, NORMAL_PLAY_RATE);
+    }
+
+    public void play7(View view) {
+        mSoundPool.play(soundId7, LEFT_VOLUME, RIGHT_VOLUME, PRIORITY, NO_LOOP, NORMAL_PLAY_RATE);
+    }
+
+    public void play8(View view) {
+        if(song9.isPlaying()){
+            song9.pause();
+
+        }
+        song8.start();
+    }
+
+    public void play9(View view) {
+        if(song8.isPlaying()){
+            song8.pause();
+        }
+        song9.start();
     }
 }
